@@ -13,25 +13,26 @@ const route = useRoute()
 const router = useRouter()
 const ruleForm = reactive<API.LoginParams>({})
 
-const rules = reactive<FormRules<typeof ruleForm>>({
+const rules = reactive<FormRules<API.LoginParams>>({
   username: [{ required: true, trigger: "blur" }],
   password: [{ required: true, trigger: "blur" }],
 })
 
-const handleSubmitForm = (formEl: FormInstance | undefined) => {
+const handleSubmitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) {
     return false
   }
-  formEl.validate((valid) => {
+  await formEl.validate((valid) => {
     if (valid) {
       loading.value = true
       if (ruleForm.username === "admin" && ruleForm.password === "admin") {
         localStorage.setItem("token", "123456")
+        ElMessage.success("Successfully.")
         const {
           query: { redirect },
         } = route
         const path = typeof redirect === "string" ? redirect : "/"
-        router.push(path)
+        router.replace(path)
       } else {
         ElMessage.error("Oops, this is a error message.")
         loading.value = false
@@ -46,7 +47,13 @@ const handleSubmitForm = (formEl: FormInstance | undefined) => {
 
 <template>
   <div class="h-screen flex items-center justify-center bg-gray-300">
-    <div class="h-full flex items-center">
+    <div class="h-full flex flex-col items-center justify-center">
+      <div class="absolute top-4">
+        <el-button type="primary" class="w-5 shadow-sm" color="#fff" round
+          ><div class="i-ri-home-4-line mr-1" />
+          Home
+        </el-button>
+      </div>
       <div class="w-auto rounded-xl bg-white p-6 opacity-80 shadow-md">
         <div class="text-center">
           <div>
@@ -62,15 +69,16 @@ const handleSubmitForm = (formEl: FormInstance | undefined) => {
           ref="ruleFormRef"
           class="mt-6"
           :model="ruleForm"
-          status-icon
           :rules="rules"
           label-position="top"
           label-width="50"
+          status-icon
         >
           <el-form-item label="Username" prop="username">
             <el-input
               v-model="ruleForm.username"
-              type="password"
+              type="text"
+              maxlength="120"
               autocomplete="off"
             />
           </el-form-item>
@@ -78,6 +86,7 @@ const handleSubmitForm = (formEl: FormInstance | undefined) => {
             <el-input
               v-model="ruleForm.password"
               type="password"
+              maxlength="120"
               autocomplete="off"
               show-password
             />

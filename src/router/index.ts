@@ -11,14 +11,22 @@ export const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     component: LAYOUT,
+    name: "LAYOUT",
     redirect: "/dashborad",
     children: [
       {
         path: "/dashborad",
+        name: "Dashborad",
         component: () => import("~/pages/Dashborad.vue"),
       },
       {
+        path: "/task",
+        name: "Task",
+        component: () => import("~/pages/Task.vue"),
+      },
+      {
         path: "/about",
+        name: "About",
         component: () => import("~/pages/About.vue"),
       },
     ],
