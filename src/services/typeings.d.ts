@@ -4,6 +4,8 @@ declare namespace API {
     password?: string
   }
 
+  interface LoginResult {}
+
   interface TaskItem {
     _id: string
     name?: string
@@ -17,5 +19,11 @@ declare namespace API {
     runtime?: string
     worker?: string
     createdAt?: string
+  }
+
+  interface TaskItemList {
+    data?: TaskItem[]
+    total?: number
+    success?: boolean
   }
 }

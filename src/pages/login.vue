@@ -6,6 +6,7 @@ import type { FormInstance, FormRules } from "element-plus"
 import { ElMessage } from "element-plus"
 import { reactive, ref } from "vue"
 import { useRoute, useRouter } from "vue-router"
+import { login } from "~/services/api"
 
 const ruleFormRef = ref<FormInstance>()
 const loading = ref<boolean>(false)
@@ -18,25 +19,32 @@ const rules = reactive<FormRules<API.LoginParams>>({
   password: [{ required: true, trigger: "blur" }],
 })
 
+const handleLogin = async (params: API.LoginParams) => {
+  loading.value = true
+  try {
+    const res = await login(params)
+    console.log(res)
+    if (res.status === 200) {
+      ElMessage.success("Successfully.")
+      const {
+        query: { redirect },
+      } = route
+      const path = typeof redirect === "string" ? redirect : "/"
+      router.replace(path)
+    }
+    console.log(res)
+  } catch (error) {}
+
+  loading.value = false
+}
+
 const handleSubmitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) {
     return false
   }
   await formEl.validate((valid) => {
     if (valid) {
-      loading.value = true
-      if (ruleForm.username === "admin" && ruleForm.password === "admin") {
-        localStorage.setItem("token", "123456")
-        ElMessage.success("Successfully.")
-        const {
-          query: { redirect },
-        } = route
-        const path = typeof redirect === "string" ? redirect : "/"
-        router.replace(path)
-      } else {
-        ElMessage.error("Oops, this is a error message.")
-        loading.value = false
-      }
+      handleLogin(ruleForm)
       console.log("submit!")
     } else {
       console.log("error submit!")

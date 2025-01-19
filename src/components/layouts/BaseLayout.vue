@@ -1,11 +1,13 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div class="common-layout w-screen h-screen">
+  <div class="common-layout h-screen w-screen">
     <el-container>
-      <el-header class="bg-white" style="height: 48px">123515</el-header>
+      <el-header>123515</el-header>
       <el-container class="el-main-container">
-        <el-aside width="200px" class="bg-white">Aside</el-aside>
+        <el-aside width="220px" class="bg-white p-2">
+          <BaseSide />
+        </el-aside>
         <el-main><router-view /></el-main>
       </el-container>
     </el-container>
@@ -16,7 +18,11 @@
 .common-layout {
   background: linear-gradient(#ffffff, #f5f5f5 28%);
 }
-.el-main-container{
+.el-header {
+  height: 48px;
+  @apply bg-white;
+}
+.el-main-container {
   height: calc(100vh - 48px);
 }
 </style>

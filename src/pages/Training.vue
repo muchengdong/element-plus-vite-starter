@@ -81,48 +81,35 @@ const tableData: API.TaskItem[] = [
 </script>
 
 <template>
-  <div class="rounded-md bg-white p-8 shadow-none">
-    <el-table
-      :data="filterTableData"
-      :stripe="true"
-      :border="true"
-      table-layout="auto"
-    >
-      <el-table-column type="selection" width="55" :selectable="selectable" />
-      <el-table-column label="UUID" prop="_id" />
-      <el-table-column label="Name" prop="name" />
-      <el-table-column label="Name CN" prop="nameCN" />
-      <el-table-column label="State" prop="state" />
-      <el-table-column label="Args" prop="args" />
-      <el-table-column label="Kwargs" prop="kwargs" />
-      <el-table-column label="Result" prop="result" />
-      <el-table-column label="Received" prop="received" />
-      <el-table-column label="Started" prop="started" />
-      <el-table-column label="Runtime" prop="runtime" />
-      <el-table-column label="Started" prop="started" />
-      <el-table-column label="Worker" prop="worker" />
-      <el-table-column label="CreatedAt" prop="createdAt" />
-      <el-table-column align="right">
-        <template #header>
-          <el-input
-            v-model="search"
-            size="small"
-            placeholder="Type to search"
-          />
-        </template>
-        <template #default="scope">
-          <el-button size="small" @click="handleEdit(scope.$index, scope.row)">
-            Edit
-          </el-button>
-          <el-button
-            size="small"
-            type="danger"
-            @click="handleDelete(scope.$index, scope.row)"
-          >
-            Delete
-          </el-button>
-        </template>
-      </el-table-column>
-    </el-table>
+  <div class="flex flex-row gap-4">
+    <div class="basis-1/6 rounded-md bg-white p-8 shadow-none">
+      <div class="training-list flex flex-col p-2 gap-2">
+        <div class="training-card rounded-md shadow-none">
+          123155<br/>
+          123155<br/>
+          123155<br/>
+          123155<br/>123155<br/>
+          123155<br/>
+        </div>
+
+        <div class="training-card rounded-md shadow-none">
+          123155<br/>
+          123155<br/>
+          123155<br/>
+          123155<br/>123155<br/>
+          123155<br/>
+        </div>
+
+        <div class="training-card rounded-md shadow-none">
+          123155<br/>
+          123155<br/>
+          123155<br/>
+          123155<br/>123155<br/>
+          123155<br/>
+        </div>
+
+      </div>
+    </div>
+    <div class="flex-1 rounded-md bg-white p-8 shadow-none">2</div>
   </div>
 </template>
