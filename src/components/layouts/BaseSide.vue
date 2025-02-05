@@ -18,16 +18,18 @@ function handleClose(key: string, keyPath: string[]) {
 </script>
 
 <template>
-  <el-menu
-    router
-    default-active="1"
-    class="el-menu-vertical-demo"
-    @open="handleOpen"
-    @close="handleClose"
-  >
+  <el-menu router default-active="1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
+    <el-menu-item index="/datasets">
+      <span class="i-ri-robot-2-line mr-2" />
+      <template #title>Datasets</template>
+    </el-menu-item>
     <el-menu-item index="/training">
       <span class="i-ri-robot-2-line mr-2" />
       <template #title>Training</template>
+    </el-menu-item>
+    <el-menu-item index="/task">
+      <span class="i-ri-robot-2-line mr-2" />
+      <template #title>Task</template>
     </el-menu-item>
     <el-menu-item index="/about">
       <el-icon>
@@ -42,6 +44,7 @@ function handleClose(key: string, keyPath: string[]) {
 .el-menu {
   border-right: none;
 }
+
 .el-menu-item {
   height: 45px;
   @apply rounded-md;

@@ -20,6 +20,11 @@ export const routes: Array<RouteRecordRaw> = [
         component: () => import("~/pages/Dashborad.vue"),
       },
       {
+        path: "/datasets",
+        name: "Datasets",
+        component: () => import("~/pages/Datasets.vue"),
+      },
+      {
         path: "/training",
         name: "Training",
         component: () => import("~/pages/Training.vue"),
