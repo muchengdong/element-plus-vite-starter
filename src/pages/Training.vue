@@ -85,11 +85,9 @@ const tableData: API.TaskItem[] = [
   <div class="flex flex-row gap-4 h-full">
     <div class="basis-1/8 rounded-md bg-white p-6 shadow-none">
       <div class="training-list flex flex-col gap-2 gap-y-4">
-
         <div class="flex flex-col gap-y-2">
           <div>
-            <el-input placeholder="Please input">
-            </el-input>
+            <el-input placeholder="Please input"> </el-input>
           </div>
           <div class="flex justify-between">
             <div></div>
@@ -142,18 +140,21 @@ const tableData: API.TaskItem[] = [
             123155<br />123155<br />
             123155<br />
           </el-card>
-
         </div>
 
         <div>
-          <el-pagination background layout="prev, pager, next" :pager-count="4" :total="50" />
+          <el-pagination
+            background
+            layout="prev, pager, next"
+            :pager-count="4"
+            :total="50"
+          />
         </div>
       </div>
     </div>
     <div class="flex-1 rounded-md bg-white p-8 shadow-none">2</div>
   </div>
 </template>
-
 
 <style lang="scss" scoped>
 .el-input {
